@@ -20,6 +20,10 @@ http.createServer(function (req, res) {
         res.setHeader('Content-Type', 'text/plain; charset=utf-8')
         var q = url.parse(req.url, true).query
         var { x, y } = q
+        if (y == 0) {
+            res.end('除数不允许为零！')
+            return
+        }
         var n = `除法 ${x} / ${y} = ${x / y}`
         res.end(n)
         return
