@@ -16,6 +16,15 @@ http.createServer(function (req, res) {
         return
     }
 
+    if (req.url.startsWith('/div')) {
+        res.setHeader('Content-Type', 'text/plain; charset=utf-8')
+        var q = url.parse(req.url, true).query
+        var { x, y } = q
+        var n = `除法 ${x} / ${y} = ${x / y}`
+        res.end(n)
+        return
+    }
+
     res.end('Invalid Request!')
 }).listen(8081)
 
